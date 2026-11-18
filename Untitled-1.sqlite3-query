@@ -76,3 +76,35 @@ INSERT INTO customers (full_name, email, phone, city) VALUES
 ('Тетяна Савченко', 'savchenko.t@gmail.com', '+380938901234', 'Полтава'),
 ('Дмитро Кравченко', 'kravchenko.d@outlook.com', '+380679012345', 'Черкаси'),
 ('Катерина Романюк', 'romanyuk.k@ukr.net', '+380500123456', 'Тернопіль');
+
+
+-- SELECT * FROM products WHERE price>5000
+
+-- ELECT SUM(orders_id) FROM orders
+
+SELECT SUM(products.price * orders.quantity) FROM orders
+JOIN products ON orders.product_id = products.product_id
+
+
+-- середній
+
+SELECT AVG(products.price * orders.quantity) as average_sales FROM orders
+JOIN products ON orders.product_id = products.product_id
+
+-- найбільш популярна
+SELECT products.category, SUM(orders.quantity) as total_sales
+FROM orders
+JOIN products ON orders.product_id = products.product_id
+GROUP BY products.category
+ORDER BY total_sales DESC;
+LIMIT 3;
+
+-- загальна 
+SELECT category, COUNT(product_id) 
+FROM products
+GROUP BY category;
+
+-- оновлення цін
+UPDATE products 
+set price = price * 1.10
+WHERE category = 'смартфони';
