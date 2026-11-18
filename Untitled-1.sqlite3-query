@@ -1,0 +1,78 @@
+-- database: ./shop.db
+
+SELECT * FROM "table-name";
+-- database: d:\CB\Code\Projects\Logika\costumers\shop.db
+
+-- database: ./customers.db
+
+CREATE TABLE products (
+    product_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    category TEXT NOT NULL,
+    price REAL NOT NULL
+);
+
+CREATE TABLE customers (
+    customer_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    full_name TEXT NOT NULL,
+    email TEXT NOT NULL,
+    phone TEXT NOT NULL,
+    city TEXT NOT NULL
+);
+
+CREATE TABLE orders (
+    order_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    customer_id INTEGER NOT NULL,
+    product_id INTEGER NOT NULL,
+    quantity INTEGER NOT NULL,
+    order_date DATE NOT NULL,
+    FOREIGN KEY (customer_id)
+        REFERENCES customers(customer_id),
+    FOREIGN KEY (product_id)
+        REFERENCES products(product_id)
+);
+
+
+INSERT INTO products (name, category, price) VALUES
+('Apple iPhone 18 Pro', 'смартфони', 60000),
+('Samsung Galaxy S25', 'смартфони', 55000),
+('Google Pixel 10', 'смартфони', 48000),
+('Xiaomi 15 Ultra', 'смартфони', 42000),
+('OnePlus 13 Pro', 'смартфони', 39000),
+('Sony Xperia 1 VII', 'смартфони', 45000),
+('Asus ROG Phone 9', 'смартфони', 51000),
+('Motorola Edge 60 Pro', 'смартфони', 34000),
+('Honor Magic 7 Pro', 'смартфони', 40000),
+('Vivo X200 Pro', 'смартфони', 43000),
+('MacBook Pro 16 M4', 'ноутбуки', 115000),
+('Asus ROG Strix G16', 'ноутбуки', 82000),
+('Lenovo Legion Pro 7', 'ноутбуки', 89000),
+('Dell XPS 14', 'ноутбуки', 78000),
+('HP Spectre x360', 'ноутбуки', 67000),
+('Microsoft Surface Laptop 7', 'ноутбуки', 64000),
+('Acer Predator Helios 18', 'ноутбуки', 95000),
+('iPad Pro 13 M4', 'планшети', 58000),
+('Samsung Galaxy Tab S10 Ultra', 'планшети', 54000),
+('Lenovo Tab P12 Pro', 'планшети', 28000),
+('Apple Watch Ultra 3', 'аксесуари', 38000),
+('Samsung Galaxy Watch 7 Pro', 'аксесуари', 19000),
+('Garmin Fenix 8', 'аксесуари', 46000),
+('Sony WH-1000XM6', 'аудіо', 17000),
+('Apple AirPods Pro 3', 'аудіо', 12500),
+('Bose QuietComfort Ultra', 'аудіо', 16000),
+('JBL PartyBox 710', 'аудіо', 27000),
+('PlayStation 5 Pro', 'ігрові консолі', 35000),
+('Xbox Series X Pro', 'ігрові консолі', 33000),
+('Nintendo Switch 2', 'ігрові консолі', 22000);
+
+INSERT INTO customers (full_name, email, phone, city) VALUES
+('Олександр Петренко', 'alex.petrenko@gmail.com', '+380501234567', 'Київ'),
+('Марія Коваленко', 'm.kovalenko@ukr.net', '+380672345678', 'Львів'),
+('Іван Шевченко', 'shevchenko.i@gmail.com', '+380933456789', 'Харків'),
+('Олена Бондаренко', 'elena.bond@outlook.com', '+380504567890', 'Одеса'),
+('Андрій Мельник', 'melnyk.andriy@gmail.com', '+380635678901', 'Дніпро'),
+('Юлія Ткаченко', 'julia.tkach@ukr.net', '+380676789012', 'Запоріжжя'),
+('Максим Бойко', 'boyko.max@gmail.com', '+380507890123', 'Вінниця'),
+('Тетяна Савченко', 'savchenko.t@gmail.com', '+380938901234', 'Полтава'),
+('Дмитро Кравченко', 'kravchenko.d@outlook.com', '+380679012345', 'Черкаси'),
+('Катерина Романюк', 'romanyuk.k@ukr.net', '+380500123456', 'Тернопіль');
